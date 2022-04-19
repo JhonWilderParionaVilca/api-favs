@@ -17,11 +17,11 @@ export const createUserController = async (
     const existUser = await findOneResourceByField(UserModel)({
       email,
     });
-    if (!existUser) {
+    if (existUser) {
       throw new ApplicationError(
         "Email already exist",
         "user",
-        "createUserController",
+        "existUser",
         400
       );
     }
@@ -39,5 +39,6 @@ export const createUserController = async (
       instance: err.fn,
       trace: err.message,
     });
+    next(new ApplicationError(err.message, err.type, err.fn, err.statusCode));
   }
 };
