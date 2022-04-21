@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { ApplicationError } from "../../shared/customErrors/AplicationError";
-import { createResource } from "../../shared/factory/createResource";
 import { findOneResourceByField } from "../../shared/factory/findOneResourceByField";
 import Logger from "../../shared/logger/appLogger";
 import { UserModel } from "../entity/models/UserModel";
+import { createUserService } from "../services/createUserService";
 import { BodyRequestCreateUser } from "../types/CreateUser";
 
 export const createUserController = async (
@@ -26,10 +26,11 @@ export const createUserController = async (
       );
     }
     // si el usuario no existe crearlo
-    await createResource(UserModel)({
+    await createUserService({
       email,
       password,
     });
+
     res.status(201).json({
       msg: "user created",
       status: true,
