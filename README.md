@@ -18,6 +18,16 @@
 
 ## API REST
 
+| **Verbo** 	|      **Ruta**      	| **Body**                                                                                              	|               **Middlewares**               	|                   **Descipción**                   	|
+|:---------:	|:------------------:	|-------------------------------------------------------------------------------------------------------	|:-------------------------------------------:	|:--------------------------------------------------:	|
+|    POST   	| /auth/local/signUp 	| { "email": string, "password": string, "passwordConfirmation": string }                               	|              requestValidator()             	|               Crear un nuevo usuario               	|
+|    POST   	|  /auth/local/login 	| { "email": string, "password": string }                                                               	|              requestValidator()             	|                Loguear a un usuario                	|
+|    POST   	|      /api/favs     	| { "name": string, }                                                                                   	| userTokenVerification()  requestValidator() 	|     Crear una Lista de favoritos con un nombre     	|
+|    GET    	|      /api/favs     	|                                                   -                                                   	|           userTokenVerification()           	| Obtener todas las lista de favoritos de un usuario 	|
+|    PUT    	|    /api/favs/:id   	| { "name"?: string, "items": [    {    "title":string,    "link": string,    "description":string } ]} 	|           userTokenVerification()           	|     Actualizar y Agregar una lista de favoritos    	|
+|    GET    	|    /api/favs/:id   	|                                                   -                                                   	|           userTokenVerification()           	|           obtener un favorito por el id.           	|
+|   DELETE  	|    /api/favs/:id   	|                                                   -                                                   	|           userTokenVerification()           	|           Eliminar una lista de favoritos          	|
+
 ## Instalación
 
 ```sh
