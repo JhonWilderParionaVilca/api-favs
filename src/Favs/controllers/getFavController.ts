@@ -4,18 +4,19 @@ import { findResourcesByField } from "../../shared/factory/findResourcesByField"
 import Logger from "../../shared/logger/appLogger";
 import { FavModel } from "../entity/models/FavModel";
 
-export const getFavsController = async (
-  req: Request,
+export const getFavController = async (
+  req: Request<{ id: string }>,
   res: Response,
   next: NextFunction
 ) => {
   try {
     const existFav = await findResourcesByField(FavModel)({
+      _id: req.params.id,
       owner: req.userId,
     });
     if (!existFav) {
       throw new ApplicationError(
-        "El usuario no tiene ninguna lista de favoritos",
+        "El usuario no tiene la lista de favoritos",
         "Fav",
         "exist list fav",
         404
@@ -28,7 +29,7 @@ export const getFavsController = async (
       status: true,
     });
   } catch (err: any) {
-    Logger.error("getFavsController", {
+    Logger.error("getFavController", {
       instance: err.fn,
       trace: err.message,
     });
