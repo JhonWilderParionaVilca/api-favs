@@ -14,9 +14,9 @@ export const getFavController = async (
       _id: req.params.id,
       owner: req.userId,
     });
-    if (!existFav) {
+    if (!existFav || existFav.length < 1) {
       throw new ApplicationError(
-        "El usuario no tiene la lista de favoritos",
+        "El usuario no tiene la lista de favorito",
         "Fav",
         "exist list fav",
         404
