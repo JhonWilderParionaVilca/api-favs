@@ -3,6 +3,7 @@ import morgan from "../shared/logger/morganLogger";
 import { APP } from "../constants/app";
 import Logger from "../shared/logger/appLogger";
 import UserRoutes from "../User/routes/users.routes";
+import favRoutes from "../Favs/routes/fav.routes";
 
 class Server {
   app: Application;
@@ -23,6 +24,7 @@ class Server {
 
   routes() {
     this.app.use("/auth/local", UserRoutes);
+    this.app.use("/api", favRoutes);
   }
 
   errorHandler() {
