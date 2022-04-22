@@ -12,11 +12,11 @@ export const FavSchema = new Schema<FavList>(
     },
     items: [
       {
-        name: {
+        title: {
           type: String,
           lowercase: true,
           trim: true,
-          required: [true, "name Fav is required"],
+          required: [true, "title Fav is required"],
         },
         description: {
           type: String,
