@@ -12,8 +12,6 @@ export const UserSchema = new Schema<User>(
     },
     password: {
       type: String,
-      lowercase: true,
-      trim: true,
       required: [true, "Password is required"],
     },
   },
